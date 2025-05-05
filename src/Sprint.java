@@ -15,7 +15,7 @@ public class Sprint {
                     ************************
                     Bem Vindo jogo do robô no labirinto!! Tente acertar o caminho!
                     Mas antes, digite quantos porcento está a bateria do robô para começar o percurso
-                    Pense bem, pois cada erro você perde 5 porcento de bateria, e cada acerto você perde 10!!
+                    Pense bem, pois por cada erro você gasta 5 porcento de bateria, e por cada acerto você gasta 10!!
                     (digite sem o simbulo de porcentagem):""");
             int bateria = sc.nextInt();
             //Loop para obrigar a colocar um valor acima de 60
