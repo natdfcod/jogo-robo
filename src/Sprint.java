@@ -12,11 +12,18 @@ public class Sprint {
         do {
         int contErros=0;
             System.out.println("""
-                    ************************
-                    Bem Vindo jogo do robô no labirinto!! Tente acertar o caminho!
-                    Mas antes, digite quantos porcento está a bateria do robô para começar o percurso
+                    ******************************************************************
+                    | Bem Vindo jogo do robô no labirinto!! Tente acertar o caminho! |
+                    ******************************************************************
+                    [REGRAS]
+                    Primeiramente você vai precisar digitar quantos porcento está a bateria do robô para começar o percurso.
                     Pense bem, pois por cada erro você gasta 5 porcento de bateria, e por cada acerto você gasta 10!!
-                    (digite sem o simbulo de porcentagem):""");
+                    Depois será perguntado que direção você quer testar e quantos passos quer dar.
+                    Se errar fique tranquilo, você receberá dicas e poderá testar valores enquanto tiver bateria suficiente!!
+                    Quando acertar as 6 duplas de comando chegará ao prêmio!
+                    Caso acabe sua bateria, saiba que poderá jogar novamente sabendo que os comandos sempre são os mesmos.
+                    **********************************************************************************************************""");
+            System.out.println("Informe quanto de bateria está o robô (digite sem o simbulo de porcentagem):");
             int bateria = sc.nextInt();
             //Loop para obrigar a colocar um valor acima de 60
             while (bateria < 60) {
@@ -43,7 +50,7 @@ public class Sprint {
             }
             System.out.println("************************");
             //Obtenção da direção e de quantos passos o usuario digitou
-            System.out.print(" Digite a direção (direta, esquerda, frente ou trás) (direta, esquerda, frente ou trás): ");
+            System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
             char direcao = sc.next().toUpperCase().charAt(0);
             System.out.print("Digite quantos passos (de 1 até 6): ");
             int passos = sc.nextInt();
@@ -79,7 +86,7 @@ public class Sprint {
                     System.out.println(b100 + bateria + "%");
                 }
                 System.out.println("************************");
-                System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                 direcao = sc.next().toUpperCase().charAt(0);
                 System.out.print("Digite quantos passos (de 1 até 6): ");
                 passos = sc.nextInt();
@@ -108,7 +115,7 @@ public class Sprint {
                     System.out.println(b90 + bateria + "%");
                 }
                 System.out.println("************************");
-                System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                 direcao = sc.next().toUpperCase().charAt(0);
                 System.out.print("Digite quantos passos (de 1 até 6): ");
                 passos = sc.nextInt();
@@ -139,7 +146,7 @@ public class Sprint {
                         System.out.println(b90 + bateria + "%");
                     }
                     System.out.println("************************");
-                    System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                    System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                     direcao = sc.next().toUpperCase().charAt(0);
                     System.out.print("Digite quantos passos (de 1 até 6): ");
                     passos = sc.nextInt();
@@ -167,7 +174,7 @@ public class Sprint {
                         System.out.println(b80 + bateria + "%");
                     }
                     System.out.println("************************");
-                    System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                    System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                     direcao = sc.next().toUpperCase().charAt(0);
                     System.out.print("Digite quantos passos (de 1 até 6): ");
                     passos = sc.nextInt();
@@ -198,7 +205,7 @@ public class Sprint {
                             System.out.println(b80 + bateria + "%");
                         }
                         System.out.println("************************");
-                        System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                        System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                         direcao = sc.next().toUpperCase().charAt(0);
                         System.out.print("Digite quantos passos (de 1 até 6): ");
                         passos = sc.nextInt();
@@ -229,7 +236,7 @@ public class Sprint {
                             System.out.println(b70 + bateria + "%");
                         }
                         System.out.println("************************");
-                        System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                        System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                         direcao = sc.next().toUpperCase().charAt(0);
                         System.out.print("Digite quantos passos (de 1 até 6): ");
                         passos = sc.nextInt();
@@ -260,7 +267,7 @@ public class Sprint {
                                 System.out.println(b70 + bateria + "%");
                             }
                             System.out.println("************************");
-                            System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                            System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                             direcao = sc.next().toUpperCase().charAt(0);
                             System.out.print("Digite quantos passos (de 1 até 6): ");
                             passos = sc.nextInt();
@@ -291,7 +298,7 @@ public class Sprint {
                                 System.out.println(b60 + bateria + "%");
                             }
                             System.out.println("************************");
-                            System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                            System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                             direcao = sc.next().toUpperCase().charAt(0);
                             System.out.print("Digite quantos passos (de 1 até 6): ");
                             passos = sc.nextInt();
@@ -322,7 +329,7 @@ public class Sprint {
                                     System.out.println(b60 + bateria + "%");
                                 }
                                 System.out.println("************************");
-                                System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                                System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                                 direcao = sc.next().toUpperCase().charAt(0);
                                 System.out.print("Digite quantos passos (de 1 até 6): ");
                                 passos = sc.nextInt();
@@ -354,7 +361,7 @@ public class Sprint {
                                     System.out.println(b50 + bateria + "%");
                                 }
                                 System.out.println("************************");
-                                System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                                System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                                 direcao = sc.next().toUpperCase().charAt(0);
                                 System.out.print("Digite quantos passos (de 1 até 6): ");
                                 passos = sc.nextInt();
@@ -385,7 +392,7 @@ public class Sprint {
                                         System.out.println(b50 + bateria + "%");
                                     }
                                     System.out.println("************************");
-                                    System.out.print(" Digite a direção (direta, esquerda, frente ou trás): ");
+                                    System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                                     direcao = sc.next().toUpperCase().charAt(0);
                                     System.out.print("Digite quantos passos (de 1 até 6): ");
                                     passos = sc.nextInt();
