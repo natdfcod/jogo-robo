@@ -12,9 +12,9 @@ public class Sprint {
         do {
         int contErros=0;
             System.out.println("""
-                    ******************************************************************
-                    | Bem Vindo jogo do robô no labirinto!! Tente acertar o caminho! |
-                    ******************************************************************
+                    *********************************************************************
+                    | Bem Vindo ao jogo do robô no labirinto!! Tente acertar o caminho! |
+                    *********************************************************************
                     [REGRAS]
                     Primeiramente você vai precisar digitar quantos porcento está a bateria do robô para começar o percurso.
                     Pense bem, pois por cada erro você gasta 2 porcento de bateria, e por cada acerto você gasta 2 por passo dado!!
@@ -22,8 +22,9 @@ public class Sprint {
                     Se errar fique tranquilo, você receberá dicas e poderá testar valores enquanto tiver bateria suficiente!!
                     Quando acertar as 6 duplas de comando chegará ao prêmio!
                     Caso acabe sua bateria, saiba que poderá jogar novamente sabendo que os comandos sempre são os mesmos.
+                    Lembre se que o robô não dá dois comandos de direção iguais em seguida, e leia com ateção as dicas durante o jogo!
                     **********************************************************************************************************""");
-            System.out.println("Informe quanto de bateria está o robô (digite sem o simbulo de porcentagem):");
+            System.out.println("Informe quanto de bateria voçê qurt colocar no robô (digite sem o simbolo de porcentagem):");
             int bateria = sc.nextInt();
             //Loop para obrigar a colocar um valor acima de 66
             while (bateria < 66) {
@@ -37,9 +38,7 @@ public class Sprint {
                     |  <|>  |
                     |__|_|__|""");
             //Estrutura de seleção para definir qual imagem da bateria é impressa
-            if (bateria <= 65) {
-                System.out.println(b60 + bateria + "%");
-            } else if (bateria <= 75) {
+            if (bateria <= 75) {
                 System.out.println(b70 + bateria + "%");
             } else if (bateria <= 85) {
                 System.out.println(b80 + bateria + "%");
@@ -74,9 +73,7 @@ public class Sprint {
                 }
                 System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 66% para continuar!");
                 //Estrutura de seleção para definir qual imagem da bateria é impressa
-                if (bateria <= 65) {
-                    System.out.println(b60 + bateria + "%");
-                } else if (bateria <= 75) {
+                if (bateria <= 75) {
                     System.out.println(b70 + bateria + "%");
                 } else if (bateria <= 85) {
                     System.out.println(b80 + bateria + "%");
@@ -108,7 +105,7 @@ public class Sprint {
                     System.out.println(b70 + bateria + "%");
                 } else if (bateria <= 85) {
                     System.out.println(b80 + bateria + "%");
-                } else if (bateria <= 90) {
+                } else if (bateria <= 88) {
                     System.out.println(b90 + bateria + "%");
                 }
                 System.out.println("************************");
@@ -130,7 +127,7 @@ public class Sprint {
                     } else if (passos < 3) {
                         System.out.println("O robô deu menos passos do que precisava!!");
                     }
-                    System.out.println("E foi gasto 5% de bateria ao errar o caminho! O robô precisa ter no mínimo 50% para continuar!");
+                    System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 54% para continuar!");
                     if (bateria <= 55) {
                         System.out.println(b50 + bateria + "%");
                     } else if (bateria <= 65) {
@@ -139,7 +136,7 @@ public class Sprint {
                         System.out.println(b70 + bateria + "%");
                     } else if (bateria <= 85) {
                         System.out.println(b80 + bateria + "%");
-                    } else if (bateria <= 90) {
+                    } else if (bateria <= 88) {
                         System.out.println(b90 + bateria + "%");
                     }
                     System.out.println("************************");
@@ -159,15 +156,13 @@ public class Sprint {
                                      |   O   |
                                      |  <|>  |
                                      |__|_|__|""");
-                    if (bateria <= 45) {
-                        System.out.println(b40 + bateria + "%");
-                    } else if (bateria <= 55) {
+                    if (bateria <= 55) {
                         System.out.println(b50 + bateria + "%");
                     } else if (bateria <= 65) {
                         System.out.println(b60 + bateria + "%");
                     } else if (bateria <= 75) {
                         System.out.println(b70 + bateria + "%");
-                    } else if (bateria <= 80) {
+                    } else if (bateria <= 82) {
                         System.out.println(b80 + bateria + "%");
                     }
                     System.out.println("************************");
@@ -189,16 +184,14 @@ public class Sprint {
                         } else if (passos < 4) {
                             System.out.println("O robô deu menos passos do que precisava!!");
                         }
-                        System.out.println("E foi gasto 5% de bateria ao errar o caminho! O robô precisa ter no mínimo 40% para continuar!");
-                        if (bateria <= 45) {
-                            System.out.println(b40 + bateria + "%");
-                        } else if (bateria <= 55) {
+                        System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 48% para continuar!");
+                        if (bateria <= 55) {
                             System.out.println(b50 + bateria + "%");
                         } else if (bateria <= 65) {
                             System.out.println(b60 + bateria + "%");
                         } else if (bateria <= 75) {
                             System.out.println(b70 + bateria + "%");
-                        } else if (bateria <= 80) {
+                        } else if (bateria <= 82) {
                             System.out.println(b80 + bateria + "%");
                         }
                         System.out.println("************************");
@@ -218,15 +211,13 @@ public class Sprint {
                                               |               O   |
                                               |              <|>  |
                                               |______________|_|__|""");
-                        if (bateria <= 35) {
-                            System.out.println(b30 + bateria + "%");
-                        } else if (bateria <= 45) {
+                        if (bateria <= 45) {
                             System.out.println(b40 + bateria + "%");
                         } else if (bateria <= 55) {
                             System.out.println(b50 + bateria + "%");
-                        } else if (bateria <= 65) {
+                        } else if (bateria <= 60) {
                             System.out.println(b60 + bateria + "%");
-                        } else if (bateria <= 70) {
+                        } else if (bateria <= 74) {
                             System.out.println(b70 + bateria + "%");
                         }
                         System.out.println("************************");
@@ -238,7 +229,7 @@ public class Sprint {
                             contErros++;
                             bateria -= 2;
                             System.out.println("Comando incorreto, tente novamente!");
-                            if (direcao == 'D') {
+                            if (direcao == 'F') {
                                 System.out.println("Você acertou a direção, mas errou os passos");
                             } else if (passos == 8) {
                                 System.out.println("Você acertou os passos, mas errou a direção");
@@ -248,16 +239,14 @@ public class Sprint {
                             } else if (passos < 8) {
                                 System.out.println("O robô deu menos passos do que precisava!!");
                             }
-                            System.out.println("E foi gasto 5% de bateria ao errar o caminho! O robô precisa ter no mínimo 30% para continuar!");
-                            if (bateria <= 35) {
-                                System.out.println(b30 + bateria + "%");
-                            } else if (bateria <= 45) {
+                            System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 40% para continuar!");
+                            if (bateria <= 45) {
                                 System.out.println(b40 + bateria + "%");
                             } else if (bateria <= 55) {
                                 System.out.println(b50 + bateria + "%");
                             } else if (bateria <= 65) {
                                 System.out.println(b60 + bateria + "%");
-                            } else if (bateria <= 70) {
+                            } else if (bateria <= 74) {
                                 System.out.println(b70 + bateria + "%");
                             }
                             System.out.println("************************");
@@ -290,7 +279,7 @@ public class Sprint {
                                 System.out.println(b40 + bateria + "%");
                             } else if (bateria <= 55) {
                                 System.out.println(b50 + bateria + "%");
-                            } else if (bateria <= 60) {
+                            } else if (bateria <= 58) {
                                 System.out.println(b60 + bateria + "%");
                             }
                             System.out.println("************************");
@@ -302,7 +291,7 @@ public class Sprint {
                                 contErros++;
                                 bateria -= 2;
                                 System.out.println("Comando incorreto, tente novamente!");
-                                if (direcao == 'F') {
+                                if (direcao == 'D') {
                                     System.out.println("Você acertou a direção, mas errou os passos");
                                 } else if (passos == 5) {
                                     System.out.println("Você acertou os passos, mas errou a direção");
@@ -312,7 +301,7 @@ public class Sprint {
                                 } else if (passos < 5) {
                                     System.out.println("O robô deu menos passos do que precisava!!");
                                 }
-                                System.out.println("E foi gasto 5% de bateria ao errar o caminho! O robô precisa ter no mínimo 20% para continuar!");
+                                System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 24% para continuar!");
                                 if (bateria <= 25) {
                                     System.out.println(b20 + bateria + "%");
                                 } else if (bateria <= 35) {
@@ -321,7 +310,7 @@ public class Sprint {
                                     System.out.println(b40 + bateria + "%");
                                 } else if (bateria <= 55) {
                                     System.out.println(b50 + bateria + "%");
-                                } else if (bateria <= 60) {
+                                } else if (bateria <= 58) {
                                     System.out.println(b60 + bateria + "%");
                                 }
                                 System.out.println("************************");
@@ -354,7 +343,7 @@ public class Sprint {
                                     System.out.println(b30 + bateria + "%");
                                 } else if (bateria <= 45) {
                                     System.out.println(b40 + bateria + "%");
-                                } else if (bateria <= 50) {
+                                } else if (bateria <= 48) {
                                     System.out.println(b50 + bateria + "%");
                                 }
                                 System.out.println("************************");
@@ -366,7 +355,7 @@ public class Sprint {
                                     contErros++;
                                     bateria -= 2;
                                     System.out.println("Comando incorreto, tente novamente!");
-                                    if (direcao == 'D') {
+                                    if (direcao == 'T') {
                                         System.out.println("Você acertou a direção, mas errou os passos");
                                     } else if (passos == 7) {
                                         System.out.println("Você acertou os passos, mas errou a direção");
@@ -376,7 +365,7 @@ public class Sprint {
                                     } else if (passos < 7) {
                                         System.out.println("O robô deu menos passos do que precisava!!");
                                     }
-                                    System.out.println("E foi gasto 5% de bateria ao errar o caminho! O robô precisa ter no mínimo 10% para continuar!");
+                                    System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 14% para continuar!");
                                     if (bateria <= 15) {
                                         System.out.println(b10 + bateria + "%");
                                     } else if (bateria <= 25) {
@@ -385,7 +374,7 @@ public class Sprint {
                                         System.out.println(b30 + bateria + "%");
                                     } else if (bateria <= 45) {
                                         System.out.println(b40 + bateria + "%");
-                                    } else if (bateria <= 50) {
+                                    } else if (bateria <= 48) {
                                         System.out.println(b50 + bateria + "%");
                                     }
                                     System.out.println("************************");
@@ -418,7 +407,7 @@ public class Sprint {
                                         System.out.println(b20 + bateria + "%");
                                     } else if (bateria <= 35) {
                                         System.out.println(b30 + bateria + "%");
-                                    } else if (bateria <= 40) {
+                                    } else if (bateria <= 34) {
                                         System.out.println(b40 + bateria + "%");
                                     }
                                 //Se o usuario não passar pelo if de confirmação ele vem para esses 'else's
