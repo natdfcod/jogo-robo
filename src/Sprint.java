@@ -8,6 +8,7 @@ public class Sprint {
                 b50 = "▌■■■■■□□□□□▐ ", b60 = "▌■■■■■■□□□□▐ ",b70 = "▌■■■■■■■□□□▐ ",b80 = "▌■■■■■■■■□□▐ ",
                 b90 = "▌■■■■■■■■■□▐ ",b100 = "▌■■■■■■■■■■▐ ",b0 ="▌□□□□□□□□□□▐ " ;
         char reiniciar;
+        String direcaoInteira = "";
         //'do while' englobando todo o programa
         do {
         int contErros=0;
@@ -23,8 +24,9 @@ public class Sprint {
                     Quando acertar as 6 duplas de comando chegará ao prêmio!
                     Caso acabe sua bateria, saiba que poderá jogar novamente sabendo que os comandos sempre são os mesmos.
                     Lembre se que o robô não dá dois comandos de direção iguais em seguida, e leia com ateção as dicas durante o jogo!
+                    O jogo somente começa se o robô tiver mais de 66% de bateria!!
                     **********************************************************************************************************""");
-            System.out.println("Informe quanto de bateria voçê qurt colocar no robô (digite sem o simbolo de porcentagem):");
+            System.out.println("Informe quanto de bateria você quer colocar no robô (digite sem o símbolo de porcentagem):");
             int bateria = sc.nextInt();
             //Loop para obrigar a colocar um valor acima de 66
             while (bateria < 66) {
@@ -48,52 +50,105 @@ public class Sprint {
                 System.out.println(b100 + bateria + "%");
             }
             System.out.println("************************");
-            //Obtenção da direção e de quantos passos o usuario digitou
+            //Obtenção da direção e de quantos passos o usuario digitar
             System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
             char direcao = sc.next().toUpperCase().charAt(0);
             System.out.print("Digite quantos passos (de 1 até 8): ");
             int passos = sc.nextInt();
             //Loop para se o usuario errar qualquer um dos comandos, tentar acertar enquanto tiver bateria suficiente
             //Se ele erra ele perde 2 de bateria, se acertar ele perde 12 (nesse caso)
-            while ((direcao != 'D' || passos != 6) && bateria >= 68) {
-                contErros++;
-                bateria -= 2;
-                System.out.println("Comando incorreto, tente novamente!");
+            while (direcao != 'D' || passos != 6) {
+                System.out.println("Comando incorreto!");
                 //Estrutura de seleção para falar se ele acertou pelo menos um dos comandos
-                if (direcao == 'D') {
-                    System.out.println("Você acertou a direção, mas errou os passos");
-                } else if (passos == 6) {
-                    System.out.println("Você acertou os passos, mas errou a direção");
-                //Para ver se o usuario digitou o passo acima ou abaixo do esperado
+                if ((direcao == 'D' || passos == 6) && bateria >= 67) {
+                    System.out.println("Você acertou somente um dos comandos!!");
+                    while ((direcao == 'D' && passos != 6) && bateria >= 67) {
+                        contErros++;
+                        bateria -= 1;
+                        System.out.println(String.format("O robô viu que o caminho é para a direita, mas não pode dar %d passos.", passos));
+                        if (passos > 6) {
+                            System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (de 1 até %d)",passos, passos));
+                        } else if (passos < 6) {
+                            System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (de %d até 8)",passos,passos));
+                        }
+                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                        if (bateria <= 75) {
+                            System.out.println(b70 + bateria + "%");
+                        } else if (bateria <= 85) {
+                            System.out.println(b80 + bateria + "%");
+                        } else if (bateria <= 95) {
+                            System.out.println(b90 + bateria + "%");
+                        } else if (bateria <= 100) {
+                            System.out.println(b100 + bateria + "%");
+                        }
+                        System.out.println("Digite um novo valor de passos:");
+                        passos = sc.nextInt();
+                    }
+                    while ((passos == 6 && direcao != 'D') && bateria >= 67) {
+                        contErros++;
+                        bateria -= 1;
+                        switch (direcao) {
+                            case 'D':
+                                direcaoInteira="direita";
+                                break;
+                            case 'E':
+                                direcaoInteira="esquerda";
+                                break;
+                            case 'F':
+                                direcaoInteira="frente";
+                                break;
+                            case 'T':
+                                direcaoInteira="trás";
+                        }
+                        System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
+                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                        if (bateria <= 75) {
+                            System.out.println(b70 + bateria + "%");
+                        } else if (bateria <= 85) {
+                            System.out.println(b80 + bateria + "%");
+                        } else if (bateria <= 95) {
+                            System.out.println(b90 + bateria + "%");
+                        } else if (bateria <= 100) {
+                            System.out.println(b100 + bateria + "%");
+                        }
+                        System.out.println("Tente outra direção:");
+                        direcao = sc.next().toUpperCase().charAt(0);
+                    }
+                } else if (direcao != 'D' && passos != 6 && bateria >= 68) {
+                    contErros++;
+                    bateria -= 2;
+                    //Para ver se o usuario digitou o passo acima ou abaixo do esperado
+                    if (passos > 6) {
+                        System.out.println("O robô deu mais passos do que precisava!!");
+                    } else if (passos < 6) {
+                        System.out.println("O robô deu menos passos do que precisava!!");
+                    }
+                    System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 66% para continuar!");
+                    //Estrutura de seleção para definir qual imagem da bateria é impressa
+                    if (bateria <= 75) {
+                        System.out.println(b70 + bateria + "%");
+                    } else if (bateria <= 85) {
+                        System.out.println(b80 + bateria + "%");
+                    } else if (bateria <= 95) {
+                        System.out.println(b90 + bateria + "%");
+                    } else if (bateria <= 100) {
+                        System.out.println(b100 + bateria + "%");
+                    }
+                    System.out.println("************************");
+                    System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
+                    direcao = sc.next().toUpperCase().charAt(0);
+                    System.out.print("Digite quantos passos (de 1 até 8): ");
+                    passos = sc.nextInt();
+                } else {
+                    break;
                 }
-                if (passos > 6) {
-                    System.out.println("O robô deu mais passos do que precisava!!");
-                } else if (passos < 6) {
-                    System.out.println("O robô deu menos passos do que precisava!!");
-                }
-                System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 66% para continuar!");
-                //Estrutura de seleção para definir qual imagem da bateria é impressa
-                if (bateria <= 75) {
-                    System.out.println(b70 + bateria + "%");
-                } else if (bateria <= 85) {
-                    System.out.println(b80 + bateria + "%");
-                } else if (bateria <= 95) {
-                    System.out.println(b90 + bateria + "%");
-                } else if (bateria <= 100) {
-                    System.out.println(b100 + bateria + "%");
-                }
-                System.out.println("************************");
-                System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
-                direcao = sc.next().toUpperCase().charAt(0);
-                System.out.print("Digite quantos passos (de 1 até 8): ");
-                passos = sc.nextInt();
             }
             //if para confirmar se ele acertou ou não
             if (direcao == 'D' && passos == 6) {
                 bateria -= 12;
                 System.out.println("Correto!! O robô esta andando!");
                 System.out.println("""
-                         ________________ 
+                         ________________
                         |            O   |
                         |           <|>  |
                         |___________|_|__|""");
@@ -113,37 +168,99 @@ public class Sprint {
                 direcao = sc.next().toUpperCase().charAt(0);
                 System.out.print("Digite quantos passos (de 1 até 8): ");
                 passos = sc.nextInt();
-                while ((direcao != 'T' || passos != 3) && bateria >= 56) {
-                    contErros++;
-                    bateria -= 2;
-                    System.out.println("Comando incorreto, tente novamente!");
-                    if (direcao == 'T') {
-                        System.out.println("Você acertou a direção, mas errou os passos");
-                    } else if (passos == 3) {
-                        System.out.println("Você acertou os passos, mas errou a direção");
+                while (direcao != 'T' || passos != 3)  {
+                    System.out.println("Comando incorreto!");
+                    if ((direcao == 'T' || passos == 3) && bateria >=55) {
+                        System.out.println("Você acertou somente um dos comandos!!");
+                        while ((direcao == 'T' && passos != 3) && bateria >=55) {
+                            contErros++;
+                            bateria -= 1;
+                            System.out.println(String.format("O robô viu que o caminho é para a trás, mas não pode dar %d passos.", passos));
+                            if (passos > 3) {
+                                System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (de 1 até %d)",passos, passos));
+                            } else if (passos < 3) {
+                                System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (de %d até 8)",passos,passos));
+                            }
+                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                            if (bateria <= 55) {
+                                System.out.println(b50 + bateria + "%");
+                            } else if (bateria <= 65) {
+                                System.out.println(b60 + bateria + "%");
+                            } else if (bateria <= 75) {
+                                System.out.println(b70 + bateria + "%");
+                            } else if (bateria <= 85) {
+                                System.out.println(b80 + bateria + "%");
+                            } else if (bateria <= 88) {
+                                System.out.println(b90 + bateria + "%");
+                            }
+                            System.out.println("Digite um novo valor de passos:");
+                            passos = sc.nextInt();
+                        }
+                        while ((passos == 3 && direcao != 'T') && bateria >=55) {
+                            contErros++;
+                            bateria -= 1;
+                            switch (direcao) {
+                                case 'D':
+                                    direcaoInteira="direita";
+                                    break;
+                                case 'E':
+                                    direcaoInteira="esquerda";
+                                    break;
+                                case 'F':
+                                    direcaoInteira="frente";
+                                    break;
+                                case 'T':
+                                    direcaoInteira="trás";
+                            }
+                            System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
+                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                            if (bateria <= 55) {
+                                System.out.println(b50 + bateria + "%");
+                            } else if (bateria <= 65) {
+                                System.out.println(b60 + bateria + "%");
+                            } else if (bateria <= 75) {
+                                System.out.println(b70 + bateria + "%");
+                            } else if (bateria <= 85) {
+                                System.out.println(b80 + bateria + "%");
+                            } else if (bateria <= 88) {
+                                System.out.println(b90 + bateria + "%");
+                            }
+                            System.out.println("Tente outra direção:");
+                            direcao = sc.next().toUpperCase().charAt(0);
+                        }
+                    } else if (direcao != 'T' && passos != 3 && bateria >= 56) {
+                        contErros++;
+                        bateria -= 2;
+                        if (direcao == 'T') {
+                            System.out.println("Você acertou a direção, mas errou os passos");
+                        } else if (passos == 3) {
+                            System.out.println("Você acertou os passos, mas errou a direção");
+                        }
+                        if (passos > 3) {
+                            System.out.println("O robô deu mais passos do que precisava!!");
+                        } else if (passos < 3) {
+                            System.out.println("O robô deu menos passos do que precisava!!");
+                        }
+                        System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 54% para continuar!");
+                        if (bateria <= 55) {
+                            System.out.println(b50 + bateria + "%");
+                        } else if (bateria <= 65) {
+                            System.out.println(b60 + bateria + "%");
+                        } else if (bateria <= 75) {
+                            System.out.println(b70 + bateria + "%");
+                        } else if (bateria <= 85) {
+                            System.out.println(b80 + bateria + "%");
+                        } else if (bateria <= 88) {
+                            System.out.println(b90 + bateria + "%");
+                        }
+                        System.out.println("************************");
+                        System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
+                        direcao = sc.next().toUpperCase().charAt(0);
+                        System.out.print("Digite quantos passos (de 1 até 8): ");
+                        passos = sc.nextInt();
+                    } else {
+                        break;
                     }
-                    if (passos > 3) {
-                        System.out.println("O robô deu mais passos do que precisava!!");
-                    } else if (passos < 3) {
-                        System.out.println("O robô deu menos passos do que precisava!!");
-                    }
-                    System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 54% para continuar!");
-                    if (bateria <= 55) {
-                        System.out.println(b50 + bateria + "%");
-                    } else if (bateria <= 65) {
-                        System.out.println(b60 + bateria + "%");
-                    } else if (bateria <= 75) {
-                        System.out.println(b70 + bateria + "%");
-                    } else if (bateria <= 85) {
-                        System.out.println(b80 + bateria + "%");
-                    } else if (bateria <= 88) {
-                        System.out.println(b90 + bateria + "%");
-                    }
-                    System.out.println("************************");
-                    System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
-                    direcao = sc.next().toUpperCase().charAt(0);
-                    System.out.print("Digite quantos passos (de 1 até 8): ");
-                    passos = sc.nextInt();
                 }
                 if (direcao == 'T' && passos == 3) {
                     bateria -= 6;
@@ -170,35 +287,93 @@ public class Sprint {
                     direcao = sc.next().toUpperCase().charAt(0);
                     System.out.print("Digite quantos passos (de 1 até 8): ");
                     passos = sc.nextInt();
-                    while ((direcao != 'D' || passos != 4) && bateria >= 50) {
-                        contErros++;
-                        bateria -= 2;
-                        System.out.println("Comando incorreto, tente novamente!");
-                        if (direcao == 'D') {
-                            System.out.println("Você acertou a direção, mas errou os passos");
-                        } else if (passos == 4) {
-                            System.out.println("Você acertou os passos, mas errou a direção");
+                    while (direcao != 'D' || passos != 4) {
+                        System.out.println("Comando incorreto!");
+                        if ((direcao == 'D' || passos == 4) && bateria>=49) {
+                            System.out.println("Você acertou somente um dos comandos!!");
+                            while ((direcao == 'D' && passos != 4) && bateria>=49) {
+                                contErros++;
+                                bateria -= 1;
+                                System.out.println(String.format("O robô viu que o caminho é para a direita, mas não pode dar %d passos.", passos));
+                                if (passos > 4) {
+                                    System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (de 1 até %d)", passos, passos));
+                                } else if (passos < 4) {
+                                    System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (de %d até 8)", passos, passos));
+                                }
+                                System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                if (bateria <= 55) {
+                                    System.out.println(b50 + bateria + "%");
+                                } else if (bateria <= 65) {
+                                    System.out.println(b60 + bateria + "%");
+                                } else if (bateria <= 75) {
+                                    System.out.println(b70 + bateria + "%");
+                                } else if (bateria <= 82) {
+                                    System.out.println(b80 + bateria + "%");
+                                }
+                                System.out.println("Digite um novo valor de passos:");
+                                passos = sc.nextInt();
+                            }
+                            while ((passos == 4 && direcao != 'D') && bateria>=49) {
+                                contErros++;
+                                bateria -= 1;
+                                switch (direcao) {
+                                    case 'D':
+                                        direcaoInteira = "direita";
+                                        break;
+                                    case 'E':
+                                        direcaoInteira = "esquerda";
+                                        break;
+                                    case 'F':
+                                        direcaoInteira = "frente";
+                                        break;
+                                    case 'T':
+                                        direcaoInteira = "trás";
+                                }
+                                System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
+                                System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                if (bateria <= 55) {
+                                    System.out.println(b50 + bateria + "%");
+                                } else if (bateria <= 65) {
+                                    System.out.println(b60 + bateria + "%");
+                                } else if (bateria <= 75) {
+                                    System.out.println(b70 + bateria + "%");
+                                } else if (bateria <= 82) {
+                                    System.out.println(b80 + bateria + "%");
+                                }
+                                System.out.println("Tente outra direção:");
+                                direcao = sc.next().toUpperCase().charAt(0);
+                            }
+                        } else if (direcao != 'D' && passos != 4 && bateria >= 50) {
+                            contErros++;
+                            bateria -= 2;
+                            if (direcao == 'D') {
+                                System.out.println("Você acertou a direção, mas errou os passos");
+                            } else if (passos == 4) {
+                                System.out.println("Você acertou os passos, mas errou a direção");
+                            }
+                            if (passos > 4) {
+                                System.out.println("O robô deu mais passos do que precisava!!");
+                            } else if (passos < 4) {
+                                System.out.println("O robô deu menos passos do que precisava!!");
+                            }
+                            System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 48% para continuar!");
+                            if (bateria <= 55) {
+                                System.out.println(b50 + bateria + "%");
+                            } else if (bateria <= 65) {
+                                System.out.println(b60 + bateria + "%");
+                            } else if (bateria <= 75) {
+                                System.out.println(b70 + bateria + "%");
+                            } else if (bateria <= 82) {
+                                System.out.println(b80 + bateria + "%");
+                            }
+                            System.out.println("************************");
+                            System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
+                            direcao = sc.next().toUpperCase().charAt(0);
+                            System.out.print("Digite quantos passos (de 1 até 8): ");
+                            passos = sc.nextInt();
+                        } else {
+                            break;
                         }
-                        if (passos > 4) {
-                            System.out.println("O robô deu mais passos do que precisava!!");
-                        } else if (passos < 4) {
-                            System.out.println("O robô deu menos passos do que precisava!!");
-                        }
-                        System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 48% para continuar!");
-                        if (bateria <= 55) {
-                            System.out.println(b50 + bateria + "%");
-                        } else if (bateria <= 65) {
-                            System.out.println(b60 + bateria + "%");
-                        } else if (bateria <= 75) {
-                            System.out.println(b70 + bateria + "%");
-                        } else if (bateria <= 82) {
-                            System.out.println(b80 + bateria + "%");
-                        }
-                        System.out.println("************************");
-                        System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
-                        direcao = sc.next().toUpperCase().charAt(0);
-                        System.out.print("Digite quantos passos (de 1 até 8): ");
-                        passos = sc.nextInt();
                     }
                     if (direcao == 'D' && passos == 4) {
                         bateria -= 8;
@@ -225,35 +400,93 @@ public class Sprint {
                         direcao = sc.next().toUpperCase().charAt(0);
                         System.out.print("Digite quantos passos (de 1 até 8): ");
                         passos = sc.nextInt();
-                        while ((direcao != 'F' || passos != 8) && bateria >= 42) {
-                            contErros++;
-                            bateria -= 2;
-                            System.out.println("Comando incorreto, tente novamente!");
-                            if (direcao == 'F') {
-                                System.out.println("Você acertou a direção, mas errou os passos");
-                            } else if (passos == 8) {
-                                System.out.println("Você acertou os passos, mas errou a direção");
+                        while (direcao != 'F' || passos != 8) {
+                            System.out.println("Comando incorreto!");
+                            if ((direcao == 'F' || passos == 8) && bateria>=41) {
+                                System.out.println("Você acertou somente um dos comandos!!");
+                                while ((direcao == 'F' && passos != 8) && bateria>=41) {
+                                    contErros++;
+                                    bateria -= 1;
+                                    System.out.println(String.format("O robô viu que o caminho é para a frente, mas não pode dar %d passos.", passos));
+                                    if (passos > 8) {
+                                        System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (de 1 até %d)", passos, passos));
+                                    } else if (passos < 8) {
+                                        System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (de %d até 8)", passos, passos));
+                                    }
+                                    System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                    if (bateria <= 45) {
+                                        System.out.println(b40 + bateria + "%");
+                                    } else if (bateria <= 55) {
+                                        System.out.println(b50 + bateria + "%");
+                                    } else if (bateria <= 60) {
+                                        System.out.println(b60 + bateria + "%");
+                                    } else if (bateria <= 74) {
+                                        System.out.println(b70 + bateria + "%");
+                                    }
+                                    System.out.println("Digite um novo valor de passos:");
+                                    passos = sc.nextInt();
+                                }
+                                while ((passos == 8 && direcao != 'F') && bateria>=41) {
+                                    contErros++;
+                                    bateria -= 1;
+                                    switch (direcao) {
+                                        case 'D':
+                                            direcaoInteira = "direita";
+                                            break;
+                                        case 'E':
+                                            direcaoInteira = "esquerda";
+                                            break;
+                                        case 'F':
+                                            direcaoInteira = "frente";
+                                            break;
+                                        case 'T':
+                                            direcaoInteira = "trás";
+                                    }
+                                    System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
+                                    System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                    if (bateria <= 45) {
+                                        System.out.println(b40 + bateria + "%");
+                                    } else if (bateria <= 55) {
+                                        System.out.println(b50 + bateria + "%");
+                                    } else if (bateria <= 60) {
+                                        System.out.println(b60 + bateria + "%");
+                                    } else if (bateria <= 74) {
+                                        System.out.println(b70 + bateria + "%");
+                                    }
+                                    System.out.println("Tente outra direção:");
+                                    direcao = sc.next().toUpperCase().charAt(0);
+                                }
+                            } else if (direcao != 'F' && passos != 8 && bateria >= 42) {
+                                contErros++;
+                                bateria -= 2;
+                                if (direcao == 'F') {
+                                    System.out.println("Você acertou a direção, mas errou os passos");
+                                } else if (passos == 8) {
+                                    System.out.println("Você acertou os passos, mas errou a direção");
+                                }
+                                if (passos > 8) {
+                                    System.out.println("O robô deu mais passos do que precisava!!");
+                                } else if (passos < 8) {
+                                    System.out.println("O robô deu menos passos do que precisava!!");
+                                }
+                                System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 40% para continuar!");
+                                if (bateria <= 45) {
+                                    System.out.println(b40 + bateria + "%");
+                                } else if (bateria <= 55) {
+                                    System.out.println(b50 + bateria + "%");
+                                } else if (bateria <= 65) {
+                                    System.out.println(b60 + bateria + "%");
+                                } else if (bateria <= 74) {
+                                    System.out.println(b70 + bateria + "%");
+                                }
+                                System.out.println("************************");
+                                System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
+                                direcao = sc.next().toUpperCase().charAt(0);
+                                System.out.print("Digite quantos passos (de 1 até 8): ");
+                                passos = sc.nextInt();
+                            } else {
+                                break;
                             }
-                            if (passos > 8) {
-                                System.out.println("O robô deu mais passos do que precisava!!");
-                            } else if (passos < 8) {
-                                System.out.println("O robô deu menos passos do que precisava!!");
-                            }
-                            System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 40% para continuar!");
-                            if (bateria <= 45) {
-                                System.out.println(b40 + bateria + "%");
-                            } else if (bateria <= 55) {
-                                System.out.println(b50 + bateria + "%");
-                            } else if (bateria <= 65) {
-                                System.out.println(b60 + bateria + "%");
-                            } else if (bateria <= 74) {
-                                System.out.println(b70 + bateria + "%");
-                            }
-                            System.out.println("************************");
-                            System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
-                            direcao = sc.next().toUpperCase().charAt(0);
-                            System.out.print("Digite quantos passos (de 1 até 8): ");
-                            passos = sc.nextInt();
                         }
                         if (direcao == 'F' && passos == 8) {
                             bateria -= 16;
@@ -287,37 +520,99 @@ public class Sprint {
                             direcao = sc.next().toUpperCase().charAt(0);
                             System.out.print("Digite quantos passos (de 1 até 8): ");
                             passos = sc.nextInt();
-                            while ((direcao != 'D' || passos != 5) && bateria >= 26) {
-                                contErros++;
-                                bateria -= 2;
-                                System.out.println("Comando incorreto, tente novamente!");
-                                if (direcao == 'D') {
-                                    System.out.println("Você acertou a direção, mas errou os passos");
-                                } else if (passos == 5) {
-                                    System.out.println("Você acertou os passos, mas errou a direção");
+                            while (direcao != 'D' || passos != 5) {
+                                System.out.println("Comando incorreto!");
+                                if ((direcao == 'D' || passos == 5) && bateria>=25) {
+                                    System.out.println("Você acertou somente um dos comandos!!");
+                                    while ((direcao == 'D' && passos != 5) && bateria>=25) {
+                                        contErros++;
+                                        bateria -= 1;
+                                        System.out.println(String.format("O robô viu que o caminho é para a direita, mas não pode dar %d passos.", passos));
+                                        if (passos > 5) {
+                                            System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (de 1 até %d)", passos, passos));
+                                        } else if (passos < 5) {
+                                            System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (de %d até 8)", passos, passos));
+                                        }
+                                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                        if (bateria <= 25) {
+                                            System.out.println(b20 + bateria + "%");
+                                        } else if (bateria <= 35) {
+                                            System.out.println(b30 + bateria + "%");
+                                        } else if (bateria <= 45) {
+                                            System.out.println(b40 + bateria + "%");
+                                        } else if (bateria <= 55) {
+                                            System.out.println(b50 + bateria + "%");
+                                        } else if (bateria <= 58) {
+                                            System.out.println(b60 + bateria + "%");
+                                        }
+                                        System.out.println("Digite um novo valor de passos:");
+                                        passos = sc.nextInt();
+                                    }
+                                    while ((passos == 5 && direcao != 'D') && bateria>=25) {
+                                        contErros++;
+                                        bateria -= 1;
+                                        switch (direcao) {
+                                            case 'D':
+                                                direcaoInteira = "direita";
+                                                break;
+                                            case 'E':
+                                                direcaoInteira = "esquerda";
+                                                break;
+                                            case 'F':
+                                                direcaoInteira = "frente";
+                                                break;
+                                            case 'T':
+                                                direcaoInteira = "trás";
+                                        }
+                                        System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
+                                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                        if (bateria <= 25) {
+                                            System.out.println(b20 + bateria + "%");
+                                        } else if (bateria <= 35) {
+                                            System.out.println(b30 + bateria + "%");
+                                        } else if (bateria <= 45) {
+                                            System.out.println(b40 + bateria + "%");
+                                        } else if (bateria <= 55) {
+                                            System.out.println(b50 + bateria + "%");
+                                        } else if (bateria <= 58) {
+                                            System.out.println(b60 + bateria + "%");
+                                        }
+                                        System.out.println("Tente outra direção:");
+                                        direcao = sc.next().toUpperCase().charAt(0);
+                                    }
+                                } else if (direcao != 'D' && passos != 5 && bateria >= 26){
+                                    contErros++;
+                                    bateria -= 2;
+                                    if (direcao == 'D') {
+                                        System.out.println("Você acertou a direção, mas errou os passos");
+                                    } else if (passos == 5) {
+                                        System.out.println("Você acertou os passos, mas errou a direção");
+                                    }
+                                    if (passos > 5) {
+                                        System.out.println("O robô deu mais passos do que precisava!!");
+                                    } else if (passos < 5) {
+                                        System.out.println("O robô deu menos passos do que precisava!!");
+                                    }
+                                    System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 24% para continuar!");
+                                    if (bateria <= 25) {
+                                        System.out.println(b20 + bateria + "%");
+                                    } else if (bateria <= 35) {
+                                        System.out.println(b30 + bateria + "%");
+                                    } else if (bateria <= 45) {
+                                        System.out.println(b40 + bateria + "%");
+                                    } else if (bateria <= 55) {
+                                        System.out.println(b50 + bateria + "%");
+                                    } else if (bateria <= 58) {
+                                        System.out.println(b60 + bateria + "%");
+                                    }
+                                    System.out.println("************************");
+                                    System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
+                                    direcao = sc.next().toUpperCase().charAt(0);
+                                    System.out.print("Digite quantos passos (de 1 até 8): ");
+                                    passos = sc.nextInt();
+                                } else {
+                                    break;
                                 }
-                                if (passos > 5) {
-                                    System.out.println("O robô deu mais passos do que precisava!!");
-                                } else if (passos < 5) {
-                                    System.out.println("O robô deu menos passos do que precisava!!");
-                                }
-                                System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 24% para continuar!");
-                                if (bateria <= 25) {
-                                    System.out.println(b20 + bateria + "%");
-                                } else if (bateria <= 35) {
-                                    System.out.println(b30 + bateria + "%");
-                                } else if (bateria <= 45) {
-                                    System.out.println(b40 + bateria + "%");
-                                } else if (bateria <= 55) {
-                                    System.out.println(b50 + bateria + "%");
-                                } else if (bateria <= 58) {
-                                    System.out.println(b60 + bateria + "%");
-                                }
-                                System.out.println("************************");
-                                System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
-                                direcao = sc.next().toUpperCase().charAt(0);
-                                System.out.print("Digite quantos passos (de 1 até 8): ");
-                                passos = sc.nextInt();
                             }
                             if (direcao == 'D' && passos == 5) {
                                 bateria -= 10;
@@ -351,37 +646,97 @@ public class Sprint {
                                 direcao = sc.next().toUpperCase().charAt(0);
                                 System.out.print("Digite quantos passos (de 1 até 8): ");
                                 passos = sc.nextInt();
-                                while ((direcao != 'T' || passos != 7) && bateria >= 16) {
-                                    contErros++;
-                                    bateria -= 2;
-                                    System.out.println("Comando incorreto, tente novamente!");
-                                    if (direcao == 'T') {
-                                        System.out.println("Você acertou a direção, mas errou os passos");
-                                    } else if (passos == 7) {
-                                        System.out.println("Você acertou os passos, mas errou a direção");
+                                while (direcao != 'T' || passos != 7) {
+                                    System.out.println("Comando incorreto!");
+                                    if ((direcao == 'T' || passos == 7) && bateria>=15) {
+                                        System.out.println("Você acertou somente um dos comandos!!");
+                                        while ((direcao == 'T' && passos != 7) && bateria>=15) {
+                                            contErros++;
+                                            bateria -= 1;
+                                            System.out.println(String.format("O robô viu que o caminho é para a trás, mas não pode dar %d passos.", passos));
+                                            if (passos > 7) {
+                                                System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (de 1 até %d)", passos, passos));
+                                            } else if (passos < 7) {
+                                                System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (de %d até 8)", passos, passos));
+                                            }
+                                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                            if (bateria <= 15) {
+                                                System.out.println(b10 + bateria + "%");
+                                            } else if (bateria <= 25) {
+                                                System.out.println(b20 + bateria + "%");
+                                            } else if (bateria <= 35) {
+                                                System.out.println(b30 + bateria + "%");
+                                            } else if (bateria <= 45) {
+                                                System.out.println(b40 + bateria + "%");
+                                            } else if (bateria <= 48) {
+                                                System.out.println(b50 + bateria + "%");
+                                            }
+                                            System.out.println("Digite um novo valor de passos:");
+                                            passos = sc.nextInt();
+                                        }
+                                        while ((passos == 7 && direcao != 'T') && bateria>=15) {
+                                            contErros++;
+                                            bateria -= 1;
+                                            switch (direcao) {
+                                                case 'D':
+                                                    direcaoInteira = "direita";
+                                                    break;
+                                                case 'E':
+                                                    direcaoInteira = "esquerda";
+                                                    break;
+                                                case 'F':
+                                                    direcaoInteira = "frente";
+                                                    break;
+                                                case 'T':
+                                                    direcaoInteira = "trás";
+                                            }
+                                            System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
+                                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                            if (bateria <= 15) {
+                                                System.out.println(b10 + bateria + "%");
+                                            } else if (bateria <= 25) {
+                                                System.out.println(b20 + bateria + "%");
+                                            } else if (bateria <= 35) {
+                                                System.out.println(b30 + bateria + "%");
+                                            } else if (bateria <= 45) {
+                                                System.out.println(b40 + bateria + "%");
+                                            } else if (bateria <= 48) {
+                                                System.out.println(b50 + bateria + "%");
+                                            }
+                                            System.out.println("Tente outra direção:");
+                                            direcao = sc.next().toUpperCase().charAt(0);
+                                        }
+                                    } else if (direcao != 'T' && passos != 7 && bateria >= 16) {
+                                        contErros++;
+                                        bateria -= 2;
+                                        if (direcao == 'T') {
+                                            System.out.println("Você acertou a direção, mas errou os passos");
+                                        } else if (passos == 7) {
+                                            System.out.println("Você acertou os passos, mas errou a direção");
+                                        }
+                                        if (passos > 7) {
+                                            System.out.println("O robô deu mais passos do que precisava!!");
+                                        } else if (passos < 7) {
+                                            System.out.println("O robô deu menos passos do que precisava!!");
+                                        }
+                                        System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 14% para continuar!");
+                                        if (bateria <= 15) {
+                                            System.out.println(b10 + bateria + "%");
+                                        } else if (bateria <= 25) {
+                                            System.out.println(b20 + bateria + "%");
+                                        } else if (bateria <= 35) {
+                                            System.out.println(b30 + bateria + "%");
+                                        } else if (bateria <= 45) {
+                                            System.out.println(b40 + bateria + "%");
+                                        } else if (bateria <= 48) {
+                                            System.out.println(b50 + bateria + "%");
+                                        }
+                                        System.out.println("************************");
+                                        System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
+                                        direcao = sc.next().toUpperCase().charAt(0);
+                                        System.out.print("Digite quantos passos (de 1 até 8): ");
+                                        passos = sc.nextInt();
                                     }
-                                    if (passos > 7) {
-                                        System.out.println("O robô deu mais passos do que precisava!!");
-                                    } else if (passos < 7) {
-                                        System.out.println("O robô deu menos passos do que precisava!!");
-                                    }
-                                    System.out.println("E foi gasto 2% de bateria ao errar o caminho! O robô precisa ter no mínimo 14% para continuar!");
-                                    if (bateria <= 15) {
-                                        System.out.println(b10 + bateria + "%");
-                                    } else if (bateria <= 25) {
-                                        System.out.println(b20 + bateria + "%");
-                                    } else if (bateria <= 35) {
-                                        System.out.println(b30 + bateria + "%");
-                                    } else if (bateria <= 45) {
-                                        System.out.println(b40 + bateria + "%");
-                                    } else if (bateria <= 48) {
-                                        System.out.println(b50 + bateria + "%");
-                                    }
-                                    System.out.println("************************");
-                                    System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
-                                    direcao = sc.next().toUpperCase().charAt(0);
-                                    System.out.print("Digite quantos passos (de 1 até 8): ");
-                                    passos = sc.nextInt();
                                 }
                                 if (direcao == 'T' && passos == 7) {
                                     bateria -= 14;
