@@ -7,6 +7,8 @@ public class Sprint {
         String b10 = "▌■□□□□□□□□□▐ ",b20 = "▌■■□□□□□□□□▐ ",b30 = "▌■■■□□□□□□□▐ ",b40 ="▌■■■■□□□□□□▐ ",
                 b50 = "▌■■■■■□□□□□▐ ", b60 = "▌■■■■■■□□□□▐ ",b70 = "▌■■■■■■■□□□▐ ",b80 = "▌■■■■■■■■□□▐ ",
                 b90 = "▌■■■■■■■■■□▐ ",b100 = "▌■■■■■■■■■■▐ ",b0 ="▌□□□□□□□□□□▐ " ;
+        char direcao;
+        int passos;
         char reiniciar;
         String direcaoInteira = "";
         //'do while' englobando todo o programa
@@ -52,11 +54,22 @@ public class Sprint {
             System.out.println("************************");
             //Obtenção da direção e de quantos passos o usuario digitar
             System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
-            char direcao = sc.next().toUpperCase().charAt(0);
+            direcao = sc.next().toUpperCase().charAt(0);
+            //loop para obrigar o usuario a escrever somente os dados aceitaveis
+            while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                direcao = sc.next().toUpperCase().charAt(0);
+            }
             System.out.print("Digite quantos passos (de 1 até 8): ");
-            int passos = sc.nextInt();
+            passos = sc.nextInt();
+            //loop para obrigar o usuario de novo
+            while (passos < 1 || passos > 8) {
+                System.out.println("Digite somente valores entre 1 e 8 : ");
+                passos = sc.nextInt();
+            }
             //Loop para se o usuario errar qualquer um dos comandos, tentar acertar enquanto tiver bateria suficiente
             //Se ele erra ele perde 2 de bateria, se acertar ele perde 12 (nesse caso)
+            //Se ele errar somente um dos comandos ele perde so 1 de bateria
             while (direcao != 'D' || passos != 6) {
                 System.out.println("Comando incorreto!");
                 //Estrutura de seleção para falar se ele acertou pelo menos um dos comandos
@@ -83,6 +96,10 @@ public class Sprint {
                         }
                         System.out.println("Digite um novo valor de passos:");
                         passos = sc.nextInt();
+                        while (passos < 1 || passos > 8) {
+                            System.out.println("Digite somente valores entre 1 e 8 : ");
+                            passos = sc.nextInt();
+                        }
                     }
                     while ((passos == 6 && direcao != 'D') && bateria >= 67) {
                         contErros++;
@@ -113,10 +130,15 @@ public class Sprint {
                         }
                         System.out.println("Tente outra direção:");
                         direcao = sc.next().toUpperCase().charAt(0);
+                        while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                            System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                            direcao = sc.next().toUpperCase().charAt(0);
+                        }
                     }
                 } else if (direcao != 'D' && passos != 6 && bateria >= 68) {
                     contErros++;
                     bateria -= 2;
+                    System.out.println("Você errou ambos os comandos.");
                     //Para ver se o usuario digitou o passo acima ou abaixo do esperado
                     if (passos > 6) {
                         System.out.println("O robô deu mais passos do que precisava!!");
@@ -137,8 +159,16 @@ public class Sprint {
                     System.out.println("************************");
                     System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                     direcao = sc.next().toUpperCase().charAt(0);
+                    while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                        System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                        direcao = sc.next().toUpperCase().charAt(0);
+                    }
                     System.out.print("Digite quantos passos (de 1 até 8): ");
                     passos = sc.nextInt();
+                    while (passos < 1 || passos > 8) {
+                        System.out.println("Digite somente valores entre 1 e 8 : ");
+                        passos = sc.nextInt();
+                    }
                 } else {
                     break;
                 }
@@ -166,8 +196,16 @@ public class Sprint {
                 System.out.println("************************");
                 System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                 direcao = sc.next().toUpperCase().charAt(0);
+                while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                    System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                    direcao = sc.next().toUpperCase().charAt(0);
+                }
                 System.out.print("Digite quantos passos (de 1 até 8): ");
                 passos = sc.nextInt();
+                while (passos < 1 || passos > 8) {
+                    System.out.println("Digite somente valores entre 1 e 8 : ");
+                    passos = sc.nextInt();
+                }
                 while (direcao != 'T' || passos != 3)  {
                     System.out.println("Comando incorreto!");
                     if ((direcao == 'T' || passos == 3) && bateria >=55) {
@@ -195,6 +233,10 @@ public class Sprint {
                             }
                             System.out.println("Digite um novo valor de passos:");
                             passos = sc.nextInt();
+                            while (passos < 1 || passos > 8) {
+                                System.out.println("Digite somente valores entre 1 e 8 : ");
+                                passos = sc.nextInt();
+                            }
                         }
                         while ((passos == 3 && direcao != 'T') && bateria >=55) {
                             contErros++;
@@ -227,10 +269,15 @@ public class Sprint {
                             }
                             System.out.println("Tente outra direção:");
                             direcao = sc.next().toUpperCase().charAt(0);
+                            while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                direcao = sc.next().toUpperCase().charAt(0);
+                            }
                         }
                     } else if (direcao != 'T' && passos != 3 && bateria >= 56) {
                         contErros++;
                         bateria -= 2;
+                        System.out.println("Você errou ambos os comandos.");
                         if (direcao == 'T') {
                             System.out.println("Você acertou a direção, mas errou os passos");
                         } else if (passos == 3) {
@@ -256,8 +303,16 @@ public class Sprint {
                         System.out.println("************************");
                         System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                         direcao = sc.next().toUpperCase().charAt(0);
+                        while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                            System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                            direcao = sc.next().toUpperCase().charAt(0);
+                        }
                         System.out.print("Digite quantos passos (de 1 até 8): ");
                         passos = sc.nextInt();
+                        while (passos < 1 || passos > 8) {
+                            System.out.println("Digite somente valores entre 1 e 8 : ");
+                            passos = sc.nextInt();
+                        }
                     } else {
                         break;
                     }
@@ -285,8 +340,16 @@ public class Sprint {
                     System.out.println("************************");
                     System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                     direcao = sc.next().toUpperCase().charAt(0);
+                    while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                        System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                        direcao = sc.next().toUpperCase().charAt(0);
+                    }
                     System.out.print("Digite quantos passos (de 1 até 8): ");
                     passos = sc.nextInt();
+                    while (passos < 1 || passos > 8) {
+                        System.out.println("Digite somente valores entre 1 e 8 : ");
+                        passos = sc.nextInt();
+                    }
                     while (direcao != 'D' || passos != 4) {
                         System.out.println("Comando incorreto!");
                         if ((direcao == 'D' || passos == 4) && bateria>=49) {
@@ -312,6 +375,10 @@ public class Sprint {
                                 }
                                 System.out.println("Digite um novo valor de passos:");
                                 passos = sc.nextInt();
+                                while (passos < 1 || passos > 8) {
+                                    System.out.println("Digite somente valores entre 1 e 8 : ");
+                                    passos = sc.nextInt();
+                                }
                             }
                             while ((passos == 4 && direcao != 'D') && bateria>=49) {
                                 contErros++;
@@ -342,10 +409,15 @@ public class Sprint {
                                 }
                                 System.out.println("Tente outra direção:");
                                 direcao = sc.next().toUpperCase().charAt(0);
+                                while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                    System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                    direcao = sc.next().toUpperCase().charAt(0);
+                                }
                             }
                         } else if (direcao != 'D' && passos != 4 && bateria >= 50) {
                             contErros++;
                             bateria -= 2;
+                            System.out.println("Você errou ambos os comandos.");
                             if (direcao == 'D') {
                                 System.out.println("Você acertou a direção, mas errou os passos");
                             } else if (passos == 4) {
@@ -369,8 +441,16 @@ public class Sprint {
                             System.out.println("************************");
                             System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                             direcao = sc.next().toUpperCase().charAt(0);
+                            while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                direcao = sc.next().toUpperCase().charAt(0);
+                            }
                             System.out.print("Digite quantos passos (de 1 até 8): ");
                             passos = sc.nextInt();
+                            while (passos < 1 || passos > 8) {
+                                System.out.println("Digite somente valores entre 1 e 8 : ");
+                                passos = sc.nextInt();
+                            }
                         } else {
                             break;
                         }
@@ -398,8 +478,16 @@ public class Sprint {
                         System.out.println("************************");
                         System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                         direcao = sc.next().toUpperCase().charAt(0);
+                        while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                            System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                            direcao = sc.next().toUpperCase().charAt(0);
+                        }
                         System.out.print("Digite quantos passos (de 1 até 8): ");
                         passos = sc.nextInt();
+                        while (passos < 1 || passos > 8) {
+                            System.out.println("Digite somente valores entre 1 e 8 : ");
+                            passos = sc.nextInt();
+                        }
                         while (direcao != 'F' || passos != 8) {
                             System.out.println("Comando incorreto!");
                             if ((direcao == 'F' || passos == 8) && bateria>=41) {
@@ -425,6 +513,10 @@ public class Sprint {
                                     }
                                     System.out.println("Digite um novo valor de passos:");
                                     passos = sc.nextInt();
+                                    while (passos < 1 || passos > 8) {
+                                        System.out.println("Digite somente valores entre 1 e 8 : ");
+                                        passos = sc.nextInt();
+                                    }
                                 }
                                 while ((passos == 8 && direcao != 'F') && bateria>=41) {
                                     contErros++;
@@ -455,10 +547,15 @@ public class Sprint {
                                     }
                                     System.out.println("Tente outra direção:");
                                     direcao = sc.next().toUpperCase().charAt(0);
+                                    while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                        System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                        direcao = sc.next().toUpperCase().charAt(0);
+                                    }
                                 }
                             } else if (direcao != 'F' && passos != 8 && bateria >= 42) {
                                 contErros++;
                                 bateria -= 2;
+                                System.out.println("Você errou ambos os comandos.");
                                 if (direcao == 'F') {
                                     System.out.println("Você acertou a direção, mas errou os passos");
                                 } else if (passos == 8) {
@@ -482,8 +579,16 @@ public class Sprint {
                                 System.out.println("************************");
                                 System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                                 direcao = sc.next().toUpperCase().charAt(0);
+                                while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                    System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                    direcao = sc.next().toUpperCase().charAt(0);
+                                }
                                 System.out.print("Digite quantos passos (de 1 até 8): ");
                                 passos = sc.nextInt();
+                                while (passos < 1 || passos > 8) {
+                                    System.out.println("Digite somente valores entre 1 e 8 : ");
+                                    passos = sc.nextInt();
+                                }
                             } else {
                                 break;
                             }
@@ -518,8 +623,16 @@ public class Sprint {
                             System.out.println("************************");
                             System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                             direcao = sc.next().toUpperCase().charAt(0);
+                            while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                direcao = sc.next().toUpperCase().charAt(0);
+                            }
                             System.out.print("Digite quantos passos (de 1 até 8): ");
                             passos = sc.nextInt();
+                            while (passos < 1 || passos > 8) {
+                                System.out.println("Digite somente valores entre 1 e 8 : ");
+                                passos = sc.nextInt();
+                            }
                             while (direcao != 'D' || passos != 5) {
                                 System.out.println("Comando incorreto!");
                                 if ((direcao == 'D' || passos == 5) && bateria>=25) {
@@ -547,6 +660,10 @@ public class Sprint {
                                         }
                                         System.out.println("Digite um novo valor de passos:");
                                         passos = sc.nextInt();
+                                        while (passos < 1 || passos > 8) {
+                                            System.out.println("Digite somente valores entre 1 e 8 : ");
+                                            passos = sc.nextInt();
+                                        }
                                     }
                                     while ((passos == 5 && direcao != 'D') && bateria>=25) {
                                         contErros++;
@@ -579,10 +696,15 @@ public class Sprint {
                                         }
                                         System.out.println("Tente outra direção:");
                                         direcao = sc.next().toUpperCase().charAt(0);
+                                        while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                            System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                            direcao = sc.next().toUpperCase().charAt(0);
+                                        }
                                     }
                                 } else if (direcao != 'D' && passos != 5 && bateria >= 26){
                                     contErros++;
                                     bateria -= 2;
+                                    System.out.println("Você errou ambos os comandos.");
                                     if (direcao == 'D') {
                                         System.out.println("Você acertou a direção, mas errou os passos");
                                     } else if (passos == 5) {
@@ -608,8 +730,16 @@ public class Sprint {
                                     System.out.println("************************");
                                     System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                                     direcao = sc.next().toUpperCase().charAt(0);
+                                    while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                        System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                        direcao = sc.next().toUpperCase().charAt(0);
+                                    }
                                     System.out.print("Digite quantos passos (de 1 até 8): ");
                                     passos = sc.nextInt();
+                                    while (passos < 1 || passos > 8) {
+                                        System.out.println("Digite somente valores entre 1 e 8 : ");
+                                        passos = sc.nextInt();
+                                    }
                                 } else {
                                     break;
                                 }
@@ -644,8 +774,16 @@ public class Sprint {
                                 System.out.println("************************");
                                 System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                                 direcao = sc.next().toUpperCase().charAt(0);
+                                while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                    System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                    direcao = sc.next().toUpperCase().charAt(0);
+                                }
                                 System.out.print("Digite quantos passos (de 1 até 8): ");
                                 passos = sc.nextInt();
+                                while (passos < 1 || passos > 8) {
+                                    System.out.println("Digite somente valores entre 1 e 8 : ");
+                                    passos = sc.nextInt();
+                                }
                                 while (direcao != 'T' || passos != 7) {
                                     System.out.println("Comando incorreto!");
                                     if ((direcao == 'T' || passos == 7) && bateria>=15) {
@@ -673,6 +811,10 @@ public class Sprint {
                                             }
                                             System.out.println("Digite um novo valor de passos:");
                                             passos = sc.nextInt();
+                                            while (passos < 1 || passos > 8) {
+                                                System.out.println("Digite somente valores entre 1 e 8 : ");
+                                                passos = sc.nextInt();
+                                            }
                                         }
                                         while ((passos == 7 && direcao != 'T') && bateria>=15) {
                                             contErros++;
@@ -705,10 +847,15 @@ public class Sprint {
                                             }
                                             System.out.println("Tente outra direção:");
                                             direcao = sc.next().toUpperCase().charAt(0);
+                                            while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                                System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                                direcao = sc.next().toUpperCase().charAt(0);
+                                            }
                                         }
                                     } else if (direcao != 'T' && passos != 7 && bateria >= 16) {
                                         contErros++;
                                         bateria -= 2;
+                                        System.out.println("Você errou ambos os comandos.");
                                         if (direcao == 'T') {
                                             System.out.println("Você acertou a direção, mas errou os passos");
                                         } else if (passos == 7) {
@@ -734,8 +881,16 @@ public class Sprint {
                                         System.out.println("************************");
                                         System.out.print("Digite a direção (direta, esquerda, frente ou trás): ");
                                         direcao = sc.next().toUpperCase().charAt(0);
+                                        while (direcao != 'D' && direcao != 'E' && direcao != 'F' && direcao != 'T') {
+                                            System.out.println("Digite somente direções aceitas (direita, esquerda, frente e trás):");
+                                            direcao = sc.next().toUpperCase().charAt(0);
+                                        }
                                         System.out.print("Digite quantos passos (de 1 até 8): ");
                                         passos = sc.nextInt();
+                                        while (passos < 1 || passos > 8) {
+                                            System.out.println("Digite somente valores entre 1 e 8 : ");
+                                            passos = sc.nextInt();
+                                        }
                                     }
                                 }
                                 if (direcao == 'T' && passos == 7) {
