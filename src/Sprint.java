@@ -32,7 +32,7 @@ public class Sprint {
             int bateria = sc.nextInt();
             //Loop para obrigar a colocar um valor acima de 66
             while (bateria < 66 || bateria > 100) {
-                System.out.println("Bateria incorreta!! (é necessário digitar um valor entre 66 e 100 porcento, sem o símbolo de porcentagem para iniciar):");
+                System.out.println("Bateria incorreta!! (é necessário digitar um valor entre 66 e 100 porcento para iniciar):");
                 bateria = sc.nextInt();
             }
             System.out.println("""
