@@ -26,13 +26,13 @@ public class Sprint {
                     Quando acertar as 6 duplas de comando chegará ao prêmio!
                     Caso acabe sua bateria, saiba que poderá jogar novamente sabendo que os comandos sempre são os mesmos.
                     Lembre se que o robô não dá dois comandos de direção iguais em seguida, e leia com ateção as dicas durante o jogo!
-                    O jogo somente começa se o robô tiver mais de 66% de bateria!!
+                    O jogo somente começa se o robô tiver mais de 66% e menos de 100% de bateria!!
                     **********************************************************************************************************""");
             System.out.println("Informe quanto de bateria você quer colocar no robô (digite sem o símbolo de porcentagem):");
             int bateria = sc.nextInt();
             //Loop para obrigar a colocar um valor acima de 66
-            while (bateria < 66) {
-                System.out.println("Bateria baixa!! Digite uma bateria mais carregada (é necessário no mínimo 66% para iniciar):");
+            while (bateria < 66 || bateria > 100) {
+                System.out.println("Bateria incorreta!! (é necessário digitar um valor entre 66 e 100 porcento, sem o símbolo de porcentagem para iniciar):");
                 bateria = sc.nextInt();
             }
             System.out.println("""
@@ -278,11 +278,6 @@ public class Sprint {
                         contErros++;
                         bateria -= 2;
                         System.out.println("Você errou ambos os comandos.");
-                        if (direcao == 'T') {
-                            System.out.println("Você acertou a direção, mas errou os passos");
-                        } else if (passos == 3) {
-                            System.out.println("Você acertou os passos, mas errou a direção");
-                        }
                         if (passos > 3) {
                             System.out.println("O robô deu mais passos do que precisava!!");
                         } else if (passos < 3) {
@@ -418,11 +413,6 @@ public class Sprint {
                             contErros++;
                             bateria -= 2;
                             System.out.println("Você errou ambos os comandos.");
-                            if (direcao == 'D') {
-                                System.out.println("Você acertou a direção, mas errou os passos");
-                            } else if (passos == 4) {
-                                System.out.println("Você acertou os passos, mas errou a direção");
-                            }
                             if (passos > 4) {
                                 System.out.println("O robô deu mais passos do que precisava!!");
                             } else if (passos < 4) {
@@ -556,11 +546,6 @@ public class Sprint {
                                 contErros++;
                                 bateria -= 2;
                                 System.out.println("Você errou ambos os comandos.");
-                                if (direcao == 'F') {
-                                    System.out.println("Você acertou a direção, mas errou os passos");
-                                } else if (passos == 8) {
-                                    System.out.println("Você acertou os passos, mas errou a direção");
-                                }
                                 if (passos > 8) {
                                     System.out.println("O robô deu mais passos do que precisava!!");
                                 } else if (passos < 8) {
@@ -705,11 +690,6 @@ public class Sprint {
                                     contErros++;
                                     bateria -= 2;
                                     System.out.println("Você errou ambos os comandos.");
-                                    if (direcao == 'D') {
-                                        System.out.println("Você acertou a direção, mas errou os passos");
-                                    } else if (passos == 5) {
-                                        System.out.println("Você acertou os passos, mas errou a direção");
-                                    }
                                     if (passos > 5) {
                                         System.out.println("O robô deu mais passos do que precisava!!");
                                     } else if (passos < 5) {
@@ -856,11 +836,6 @@ public class Sprint {
                                         contErros++;
                                         bateria -= 2;
                                         System.out.println("Você errou ambos os comandos.");
-                                        if (direcao == 'T') {
-                                            System.out.println("Você acertou a direção, mas errou os passos");
-                                        } else if (passos == 7) {
-                                            System.out.println("Você acertou os passos, mas errou a direção");
-                                        }
                                         if (passos > 7) {
                                             System.out.println("O robô deu mais passos do que precisava!!");
                                         } else if (passos < 7) {
