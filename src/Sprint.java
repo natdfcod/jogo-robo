@@ -13,7 +13,7 @@ public class Sprint {
         String direcaoInteira = "";
         //'do while' englobando todo o programa
         do {
-        int contErros=0;
+            int contErros=0;
             System.out.println("""
                     *********************************************************************
                     | Bem Vindo ao jogo do robô no labirinto!! Tente acertar o caminho! |
@@ -870,7 +870,7 @@ public class Sprint {
                                 }
                                 if (direcao == 'T' && passos == 7) {
                                     bateria -= 14;
-                                    System.out.println("Parabéns!! Você chegou ao prêmio ");
+                                    System.out.println("PARABÉNS!!Você chegou ao prêmio!");
                                     System.out.println("""
                                                            _____________________
                                                           |                     |
@@ -895,7 +895,7 @@ public class Sprint {
                                     } else if (bateria <= 34) {
                                         System.out.println(b40 + bateria + "%");
                                     }
-                                //Se o usuario não passar pelo if de confirmação ele vem para esses 'else's
+                                    //Se o usuario não passar pelo if de confirmação ele vem para esses 'else's
                                 } else {
                                     System.out.println("Bateria acabou!!");
                                     contErros++;
@@ -924,9 +924,9 @@ public class Sprint {
             if (contErros==1) {
                 System.out.println("Você errou o caminho somente uma vez");
             } else if (contErros>1) {
-            System.out.println("Você errou o caminho "+contErros+" vezes");
+                System.out.println("Você errou o caminho "+contErros+" vezes");
             } else {
-                System.out.println("Você acertou o caminho de primeria!! Impressionante!");
+                System.out.println("Você acertou o caminho de primeira!! Impressionante!");
             }
             //Pergunta se o usuario quer jogar de novo para entrar no loop do 'do while'
             System.out.println("Quer jogar de novo? (S/N):");
