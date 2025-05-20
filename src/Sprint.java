@@ -80,11 +80,11 @@ public class Sprint {
                         bateria -= 1;
                         System.out.println(String.format("O robô viu que o caminho é para a direita, mas não pode dar %d passos.", passos));
                         if (passos > 6) {
-                            System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d)",passos, passos));
+                            System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d).",passos, passos));
                         } else if (passos < 6) {
-                            System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8)",passos,passos));
+                            System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8).",passos,passos));
                         }
-                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 66% para continuar!");
                         if (bateria <= 75) {
                             System.out.println(b70 + bateria + "%");
                         } else if (bateria <= 85) {
@@ -118,7 +118,7 @@ public class Sprint {
                                 direcaoInteira="trás";
                         }
                         System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
-                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 66% para continuar!");
                         if (bateria <= 75) {
                             System.out.println(b70 + bateria + "%");
                         } else if (bateria <= 85) {
@@ -215,11 +215,11 @@ public class Sprint {
                             bateria -= 1;
                             System.out.println(String.format("O robô viu que o caminho é para a trás, mas não pode dar %d passos.", passos));
                             if (passos > 3) {
-                                System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d)",passos, passos));
+                                System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d).",passos, passos));
                             } else if (passos < 3) {
-                                System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8)",passos,passos));
+                                System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8).",passos,passos));
                             }
-                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 54% para continuar!");
                             if (bateria <= 55) {
                                 System.out.println(b50 + bateria + "%");
                             } else if (bateria <= 65) {
@@ -255,7 +255,7 @@ public class Sprint {
                                     direcaoInteira="trás";
                             }
                             System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
-                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 54% para continuar!");
                             if (bateria <= 55) {
                                 System.out.println(b50 + bateria + "%");
                             } else if (bateria <= 65) {
@@ -354,11 +354,11 @@ public class Sprint {
                                 bateria -= 1;
                                 System.out.println(String.format("O robô viu que o caminho é para a direita, mas não pode dar %d passos.", passos));
                                 if (passos > 4) {
-                                    System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d)", passos, passos));
+                                    System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d).", passos, passos));
                                 } else if (passos < 4) {
-                                    System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8)", passos, passos));
+                                    System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8).", passos, passos));
                                 }
-                                System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 48% para continuar!");
                                 if (bateria <= 55) {
                                     System.out.println(b50 + bateria + "%");
                                 } else if (bateria <= 65) {
@@ -392,7 +392,7 @@ public class Sprint {
                                         direcaoInteira = "trás";
                                 }
                                 System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
-                                System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 48% para continuar!");
                                 if (bateria <= 55) {
                                     System.out.println(b50 + bateria + "%");
                                 } else if (bateria <= 65) {
@@ -452,7 +452,7 @@ public class Sprint {
                                      _________________
                                     |                 |
                                     |                 |
-                                    |_________        |___________ 
+                                    |_________        |___________
                                               |               O   |
                                               |              <|>  |
                                               |______________|_|__|""");
@@ -487,11 +487,11 @@ public class Sprint {
                                     bateria -= 1;
                                     System.out.println(String.format("O robô viu que o caminho é para a frente, mas não pode dar %d passos.", passos));
                                     if (passos > 8) {
-                                        System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d)", passos, passos));
+                                        System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d).", passos, passos));
                                     } else if (passos < 8) {
-                                        System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8)", passos, passos));
+                                        System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8).", passos, passos));
                                     }
-                                    System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                    System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 40% para continuar!");
                                     if (bateria <= 45) {
                                         System.out.println(b40 + bateria + "%");
                                     } else if (bateria <= 55) {
@@ -525,7 +525,7 @@ public class Sprint {
                                             direcaoInteira = "trás";
                                     }
                                     System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
-                                    System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                    System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 40% para continuar!");
                                     if (bateria <= 45) {
                                         System.out.println(b40 + bateria + "%");
                                     } else if (bateria <= 55) {
@@ -627,11 +627,11 @@ public class Sprint {
                                         bateria -= 1;
                                         System.out.println(String.format("O robô viu que o caminho é para a direita, mas não pode dar %d passos.", passos));
                                         if (passos > 5) {
-                                            System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d)", passos, passos));
+                                            System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d).", passos, passos));
                                         } else if (passos < 5) {
-                                            System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8)", passos, passos));
+                                            System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8).", passos, passos));
                                         }
-                                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 24% para continuar!");
                                         if (bateria <= 25) {
                                             System.out.println(b20 + bateria + "%");
                                         } else if (bateria <= 35) {
@@ -667,7 +667,7 @@ public class Sprint {
                                                 direcaoInteira = "trás";
                                         }
                                         System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
-                                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                        System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 24% para continuar!");
                                         if (bateria <= 25) {
                                             System.out.println(b20 + bateria + "%");
                                         } else if (bateria <= 35) {
@@ -773,11 +773,11 @@ public class Sprint {
                                             bateria -= 1;
                                             System.out.println(String.format("O robô viu que o caminho é para a trás, mas não pode dar %d passos.", passos));
                                             if (passos > 7) {
-                                                System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d)", passos, passos));
+                                                System.out.println(String.format("Se ele der %d passos ele bate na parede, tente um valor mais baixo (entre 1 e %d).", passos, passos));
                                             } else if (passos < 7) {
-                                                System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8)", passos, passos));
+                                                System.out.println(String.format("Se ele der %d passos o robô não chegaria até a proxima virada, tente um valor mais alto (entre %d e 8).", passos, passos));
                                             }
-                                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 14% para continuar!");
                                             if (bateria <= 15) {
                                                 System.out.println(b10 + bateria + "%");
                                             } else if (bateria <= 25) {
@@ -813,7 +813,7 @@ public class Sprint {
                                                     direcaoInteira = "trás";
                                             }
                                             System.out.println(String.format("O robô viu que pode dar %d passos, mas não para %s.", passos, direcaoInteira));
-                                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1 porcento de bateria!");
+                                            System.out.println("Por você ter errado somente um dos comandos, você perdeu 1% de bateria! O robô precisa ter no mínimo 14% para continuar!");
                                             if (bateria <= 15) {
                                                 System.out.println(b10 + bateria + "%");
                                             } else if (bateria <= 25) {
