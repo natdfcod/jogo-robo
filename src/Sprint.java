@@ -931,6 +931,10 @@ public class Sprint {
             //Pergunta se o usuario quer jogar de novo para entrar no loop do 'do while'
             System.out.println("Quer jogar de novo? (S/N):");
             reiniciar = sc.next().toUpperCase().charAt(0);
+            while (reiniciar != 'S' && reiniciar != 'N') {
+                System.out.println("Digite somente 'S' para Sim ou 'N' para Não:");
+                reiniciar = sc.next().toUpperCase().charAt(0);
+            }
         } while (reiniciar =='S');
         System.out.println("Fim do programa!");
     }
